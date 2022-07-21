@@ -190,7 +190,6 @@ You will need the contents of three git repos to make everything work: this repo
 
 In this section, we provide Windows, Linux, and Mac instructions for doing all of this stuff.
 
-
 #### Windows instructions for git/Python stuff
 
 The first time you set all of this up, open an Anaconda Prompt, and run:
@@ -280,6 +279,40 @@ export PYTHONPATH="$PYTHONPATH:$HOME/git/cameratraps:$HOME/git/ai4eutils:$HOME/g
 
 Pro tip: rather than updating your PYTHONPATH every time you start a new shell, you can add the "export" line to your .bashrc file.
 
+#### Cyverse Pytorch Jupyter Lab instructions:
+
+```batch
+mkdir "git"
+cd "git"
+git clone https://github.com/Microsoft/cameratraps
+git clone https://github.com/Microsoft/ai4eutils
+cd ~
+cd "work"
+cd "git"
+cd "cameratraps"
+conda env create --file environment-detector.yml
+conda activate cameratraps-detector
+export PYTHONPATH="$PYTHONPATH:$HOME/work/git/cameratraps:$HOME/work/git/ai4eutils:$HOME/work/git/yolov5"
+
+# ***
+# The rest of this step is specific to MDv5; you can skip the rest of this step if you are
+# only using MDv4.  If you're new to MegaDetector, you probably want MDv5, so you probably
+# want to run the rest of this step.
+# ***
+cd ~
+cd "work"
+cd "git"
+git clone https://github.com/ultralytics/yolov5/
+cd ~
+cd "work"
+cd "git"
+cd "yolov5"
+git checkout c23a441c9df7ca9b1f275e8c8719c949269160d1
+cd ~
+cd "work"
+cd "git"
+cd "cameratraps"
+```
 
 #### Mac instructions for git/Python stuff
 
@@ -344,6 +377,15 @@ cd ~/git/CameraTraps
 python detection/run_detector.py "$HOME/megadetector/md_v5a.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.2
 ```
 
+#### Cyverse Pytorch Jupyter Lab instructions:
+ 
+```batch
+cd ~
+cd "git"
+cd "cameratraps"
+python detection/run_detector.py "$HOME/work/megadetector/md_v5a.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.2
+```
+
 #### run_detector_batch.py
 
 To apply this model to larger image sets on a single machine, we recommend a different script, [run_detector_batch.py](https://github.com/Microsoft/CameraTraps/blob/master/detection/run_detector_batch.py).  This outputs data in the same format as our [batch processing API](https://github.com/microsoft/CameraTraps/tree/master/api/batch_processing), so you can leverage all of our post-processing tools.  The format that this script produces is also compatible with [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse/).
@@ -380,6 +422,14 @@ cd ~/git/CameraTraps
 python detection/run_detector_batch.py "$HOME/megadetector/md_v5a.0.0.pt" "/some/image/folder" "$HOME/megadetector/test_output.json" --output_relative_filenames --recursive --threshold 0.2 --checkpoint_frequency 10000
 ```
 
+#### Cyverse Pytorch Jupyter Lab instructions:
+
+```batch
+cd ~
+cd "git"
+cd "CameraTraps"
+python detection/run_detector_batch.py "$HOME/work/megadetector/md_v5a.0.0.pt" "/some/image/folder" "$HOME/work/megadetector/test_output.json" --output_relative_filenames --recursive --threshold 0.2 --checkpoint_frequency 10000
+```
 
 ## Is there a GUI?
 
