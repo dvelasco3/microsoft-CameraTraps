@@ -426,6 +426,7 @@ python detection/run_detector_batch.py "$HOME/megadetector/md_v5a.0.0.pt" "/some
 
 ```batch
 cd ~
+cd "work"
 cd "git"
 cd "CameraTraps"
 python detection/run_detector_batch.py "$HOME/work/megadetector/md_v5a.0.0.pt" "/some/image/folder" "$HOME/work/megadetector/test_output.json" --output_relative_filenames --recursive --threshold 0.2 --checkpoint_frequency 10000
